@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<!-- scr/WijnshopTest/Presentation/Overzicht.twig --> 
+{%include 'includes/header.twig'%} 
+    
+        <section class="totalwrapper clearfix">
+            {%include 'includes/sidebar.twig'%}
+            <section class="wrappercontent wrapselected ">
+                <ul class="ulselected">
+                {% for wijnen in wijn %}
+                <div class="wijnwrapper selected">
+                <li>    
+                    <div class="wijntitel">{{wijnen.getNaam}}</div>
+                </li>
+                <li>
+                    <div class="wijntitel">
+                        <img id="imageproduct" src="images/{{wijnen.getImage}}" alt="Rode wijn"></img>
+                    </div>
+                </li>
+                <li>
+                    <div class="wijntitel">Herkomst : <b>{{wijnen.getLand}}</b></div> 
+                </li>
+                <li>
+                    <div class="wijntitel">Jaartal : <b>{{wijnen.getJaartal}}</b></div>
+                </li>
+                <li>
+                    <div class="wijntitel">Categorie : <b>{{wijnen.getCat}}</b></div>
+                </li>
+                <li>
+                    <div class="wijntitel">Artikelcode : <b>{{wijnen.getArtcode}}</b></div>
+                </li>
+                <li>
+                    <div class="wijntitel">Prijs : &euro; <b>{{wijnen.getPrijs}}</b></div>
+                </li>
+                <li>
+                    <div class="wijntitel">
+                        <p><h3>Kies aantal flessen: </h3></p> 
+                    </div>
+                </li>
+                <div class="wijntitel">
+                        <form method="post" action="test.php?action=select&id={{wijnen.getIdWijn}}">
+                            <div class="input">
+                                <label for="aantal"></label>
+                                <input type =number name="aantal"  min="0" value="">
+                            </div>
+                    <div class="wijntitel">
+                        <p><h3>Kies uw verpakking: </h3></p> 
+                    </div>
+               
+                {% for verpakkingen in verpakking %}
+                     
+                <li>
+                    <div class="wijntitel">
+                    {{verpakkingen.getNaam}} : prijs : {{verpakkingen.getPrijs}}<input type='radio' name='verpak' value='{{verpakkingen.getIdVerpak}}'> 
+                    </div>
+                </li> 
+                
+                
+                {%endfor%}
+                <li>
+                    
+                            <div class="input">
+                                <input type="submit"  name="submit" value="Voeg toe aan winkelwagentje">
+                            </div> 
+                        </form>
+                    </div>
+                </li>  
+                {%endfor%} 
+                
+                </div>
+                <div id="winkelmandje">
+                    <h4>Uw winkelmandje:</h4>
+                    {%for key, value in mandje%}
+                    <p>{{value['naam']}}&nbsp 
+                        {{value['prijs']}}&euro; per fles &nbsp
+                        aantal &nbsp{{value['aantal']}} &nbsp
+                        subtotaal &nbsp{{value['subtotaal']}}&euro; &nbsp
+                        <a href="test.php?action=verwijdart&item={{key}}">
+                            <img class="delete" src="images/delete.jpg"/>
+                        </a>
+                    </p>
+                    {%endfor%}
+                    {%for key, value in mandjeVerpak%}
+                    <p>{{value['naamVerpak']}}&nbsp 
+                        {{value['prijsVerpak']}}&euro; per verpakking &nbsp
+                        aantal &nbsp{{value['aantalVerpak']}} &nbsp
+                        subtotaal &nbsp{{value['subVerpak']}}&euro; &nbsp
+                        <a href="test.php?action=verwijdVerpak&verpak={{key}}">
+                            <img class="delete" src="images/delete.jpg"/>
+                        </a>
+                    </p>
+                    {%endfor%}
+                    <hr>
+                    <hr>
+                    <p>Totaal aantal flessen: <span id="totaal">{{aantal}}stuks</span></p>
+                    <hr>
+                    <p>Totaal aantal verpakkingen: <span id="totaal">{{aantalverpak}}stuks</span></p>
+                    <hr>
+                    <p>Totaalprijs: <span id="totaal">{{totaal}}&euro;</span></p>
+                    <hr>
+                    <div id="afrekenen">
+                        <a class="" href="winkelmandje.php?action=afrekenen">Afrekenen</a>
+                    </div>
+                </div>  
+                   
+                </ul>
+            </section>
+        </section>       
+          
+{%include 'includes/footer.twig'%}

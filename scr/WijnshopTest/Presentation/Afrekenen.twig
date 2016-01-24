@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<!-- scr/WijnshopTest/Presentation/Afrekenen.twig --> 
+{%include 'includes/header.twig'%} 
+    
+        <section class="totalwrapper clearfix">
+            {%include 'includes/sidebar.twig'%}
+            <section class="wrappercontent  ">
+                <div class="titel">
+                   
+                </div>
+                <div class="winkelmandjecontr">
+                    <div id="">
+                        <div>
+                        {%if (error == "notLogin")%}
+                            <p class="red">
+                                Voor u kan bestellen dient u eerst te registreren en/of in te loggen ! 
+                            </p>
+                            <p>
+                                <a href="login.php">Login</a>
+                            </p>
+                            <p>
+                                <a href="registreren.php">Registreren</a>
+                            </p>
+                        {%endif%}
+                    </div> 
+                    <br />   
+                    <h4>Uw winkelmandje:</h4>
+                    {%for key, value in mandje%}
+                    <p>{{value['naam']}}&nbsp 
+                        {{value['prijs']}}&euro; per fles &nbsp
+                        aantal &nbsp{{value['aantal']}} &nbsp
+                        subtotaal &nbsp{{value['subtotaal']}}&euro; &nbsp
+                    </p>
+                    {%endfor%}
+                    {%for key, value in mandjeVerpak%}
+                    <p>{{value['naamVerpak']}}&nbsp 
+                        {{value['prijsVerpak']}}&euro; per verpakking &nbsp
+                        aantal &nbsp{{value['aantalVerpak']}} &nbsp
+                        subtotaal &nbsp{{value['subVerpak']}}&euro; &nbsp
+                    </p>
+                    {%endfor%}
+                    <hr>
+                    <hr>
+                    <p>Totaal aantal flessen: <span id="totaal">{{aantal}}stuks</span></p>
+                    <hr>
+                    <p>Totaal aantal verpakkingen: <span id="totaal">{{aantalVerpak}}stuks</span></p>
+                    <hr>
+                    <p>Totaalprijs: <span id="totaal">{{totaal}}&euro;</span></p>
+                    <hr>
+                </div>
+                    <div class="afrekenen">
+                        <form method="POST" action="afrekenen.php?action=bestellen">
+                    <div class="afrekenen">
+                        <h4>Kies uw gewenste levering</h4>
+                    <label for="levering">levering :</label>
+                    <select name="levering"> 
+                        <option value="0">Zelf afhalen door klant</option>
+                        <option value="1">Thuis laten leveren, indien minder dan 4 flessen = +3.00 &euro; </option>  
+                    </select>   
+                    </div>
+                    <br />
+                            <input type="submit" name="action" value="Bestellen">
+                        </form> 
+                    </div>
+                </div> 
+                </div>
+            </section>
+        </section>       
+             
+{%include 'includes/footer.twig'%}  
+

@@ -1,0 +1,89 @@
+<!-- src/WijnshopTest/Presentation/Registreren.twig --> 
+{%include 'includes/header.twig'%} 
+    
+        <section class="totalwrapper clearfix">
+        <section id="reg" class="wrappercontent">
+            <div id="regtitel">
+                <h3>Registreren</h3>
+                <h4>Alle velden zijn verplicht in te vullen</h4>
+            </div>
+            <div class="input">
+            <form method="post" action="registreren.php?action=registreer">
+                <table   style="width:100%">
+                    <tbody id="tabreg">
+                    <tr>
+                        <td><label for="naam"><h2>Naam :</h2></label></td>
+                        <td><input type ="text" name="naam" value="{{naam}}"></td> 
+                    </tr>
+                    <tr>
+                        <td><label for="naam"><h2>Voornaam :</h2></label></td>
+                        <td><input type ="text" name="voornaam" value="{{voornaam}}"></td> 
+                    </tr>
+                    <tr>
+                        <td><label for="straat"><h2>Straat :</h2></label></td>
+                        <td><input type ="text" name="straat" value="{{straat}}"></td> 
+                    </tr>
+                    <tr>
+                        <td><label for="nr"><h2>Nr :</h2></label></td>
+                        <td><input type ="text" name="nr" value="{{nr}}"></td> 
+                    </tr>
+                    <tr>
+                        <td><label for="postcode"><h2>Postcode :</h2></label></td>
+                        <td><input type ="text" name="postcode" value="{{postcode}}"></td> 
+                    </tr>
+                    <tr>
+                        <td><label for="gemeente"><h2>Gemeente :</h2></label></td>
+                        <td><input type ="text" name="gemeente" value="{{gemeente}}"></td> 
+                    </tr></tr><tr>
+                    <tr>
+                        <td><label for="wachtwoord"><h2>Wachtwoord</h2></label></td>
+                        <td><input type ="password" name="wachtwoord" value="{{wachtwoord}}"></td>
+                        <td>
+                            {%if (error == "wachtwoord")%}
+                                <p class="red">
+                                    Uw wachtwoord voldoet niet aan de voorwaarden.
+                                </p>
+                                <p class="red">
+                                    Uw wachtwoord moet min. 6 en max.32 karakters zijn.
+                                </p>
+                                <p class="red">
+                                    Uw wachtwoord moet min. 1 kleine- en min. 1 hoofdletter en min. 1 cijfer te bevatten.
+                                </p>
+                            {%endif%}
+                        </td>
+                    </tr><tr>
+                        <td><label for="email"><h2>Email</h2></label></td>
+                        <td><input type="email" name="email" value="{{email}}"></td> 
+                        <td>
+                            {%if (error == "noValidEmail")%}
+                            
+                                <p class="red">
+                                    Dit is geen correct email.
+                                </p>
+                            
+                            {%endif%}
+                            {%if (error == "emailBestaat")%}
+                                <p class="red">
+                                    Uw email is reeds geregistreerd.
+                                </p>
+                            {%endif%}               
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value=" Registreren"></td> 
+                        <td>
+                            {%if (error == "leegInput")%}
+                                <p class="red">
+                                    Alle velden dienen ingevuld te worden.
+                                </p>
+                            {%endif%}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>                   
+        </div>
+        </section>
+        </section>
+{%include 'includes/footer.twig'%}

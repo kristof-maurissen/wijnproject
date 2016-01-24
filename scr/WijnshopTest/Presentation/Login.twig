@@ -1,0 +1,37 @@
+<!-- scr/WijnshopTest/Presentation/Login.twig --> 
+{%include 'includes/header.twig'%} 
+    
+        <section class="totalwrapper clearfix">
+        <section id="reg" class="wrappercontent">
+            <div id="regtitel">
+                <h3>Login</h3>
+            </div>
+            <form method="post" action="login.php?action=aanmelden"> 
+                <table   style="width:100%">
+                    <tbody id="tabreg">
+                    <tr> 
+                        <td><label for="email"><h2>Email</h2></label></td>
+                        <td><input type="email" name="txtEmail" value="{{email}}"></td>
+                    </tr>
+                    <tr> 
+                        <td><label for="wachtwoord"><h2>Wachtwoord</h2></label></td>
+                        <td><input type ="password" name="txtWachtwoord" value="{{wachtwoord}}"></td> 
+                    </tr>
+                    <tr>
+                    <td></td> 
+                    <td> 
+                        <input type="submit" value="Aanmelden" /> 
+                    </td>
+                    <td> 
+                        {% if error == "fouteInlog" %}
+                            <p class="red"> Foutieve login !</p>
+                        {% endif %}
+                    </td>
+                    </tr> 
+                    </tbody>
+                </table> 
+            </form>  
+        </section>
+        </section>   
+{%include 'includes/footer.twig'%}
+

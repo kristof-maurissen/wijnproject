@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<!-- scr/WijnshopTest/Presentation/Winkelmandje.twig --> 
+{%include 'includes/header.twig'%} 
+    
+        <section class="totalwrapper clearfix">
+            {%include 'includes/sidebar.twig'%}
+            <section class="wrappercontent wrapselected ">
+                <div class="winkelmandjecontr">
+                    <div id="">
+                    <h4>Uw winkelmandje:</h4>
+                    {%for key, value in mandje%}
+                    <p>{{value['naam']}}&nbsp 
+                        {{value['prijs']}}&euro; per fles &nbsp
+                        aantal &nbsp{{value['aantal']}} &nbsp
+                        subtotaal &nbsp{{value['subtotaal']}}&euro; &nbsp
+                        <a href="winkelmandje.php?action=verwijdart&item={{key}}">
+                            <img class="delete" src="images/delete.jpg"/>
+                        </a>
+                    </p>
+                    {%endfor%}
+                    {%for key, value in mandjeVerpak%}
+                    <p>{{value['naamVerpak']}}&nbsp 
+                        {{value['prijsVerpak']}}&euro; per verpakking &nbsp
+                        aantal &nbsp{{value['aantalVerpak']}} &nbsp
+                        subtotaal &nbsp{{value['subVerpak']}}&euro; &nbsp
+                        <a href="winkelmandje.php?action=verwijdVerpak&verpak={{key}}">
+                            <img class="delete" src="images/delete.jpg"/>
+                        </a>
+                    </p>
+                    {%endfor%}
+                    <hr>
+                    <hr>
+                    <p>Totaal aantal flessen: <span id="totaal">{{aantal}}stuks</span></p>
+                    <hr>
+                    <p>Totaal aantal verpakkingen: <span id="totaal">{{aantalVerpak}}stuks</span></p>
+                    <hr>
+                    <p>Totaalprijs: <span id="totaal">{{totaal}}&euro;</span></p>
+                    <hr>
+                    <br />
+                    <div class="afrekenen">
+                        <a class="" href="winkelmandje.php">Uw bestelling aanpassen</a>
+                    </div>
+                    <br />
+                    <br />
+                    <div id="afrekenen">
+                        <a class="" href="afrekenen.php?action=afrekenen">Afrekenen</a>
+                    </div>
+                </div> 
+                </div>
+            </section>
+        </section>       
+          
+{%include 'includes/footer.twig'%}
